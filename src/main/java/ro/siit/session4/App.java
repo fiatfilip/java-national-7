@@ -1,4 +1,4 @@
-package ro.siit;
+package ro.siit.session4;
 
 /**
  * Hello world!
