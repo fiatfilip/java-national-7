@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         forFct(100);
-        System.out.println( "Hello World!" );
+        System.out.println( "Hello Andrei!" );
         forFct(10);
     }
 
