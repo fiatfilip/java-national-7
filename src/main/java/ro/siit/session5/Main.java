@@ -7,13 +7,17 @@ public class Main {
 
         Light bulb = new Light();
 
+        bulb.setMaximumVoltage(120);
+
         bulb.on();
 
-        while(bulb.getIntensity() < 105){
+        while (bulb.getCurrentFlow() < 80) {
             bulb.brighten();
         }
 
-        System.out.println("Intesitatea becului este " + bulb.getIntensity() + bulb.getState());
+        System.out.println("Intesitatea luminoasă a becului este: " + bulb.getIntensityPercent() + "%");
+        System.out.println("Starea becului este: " + bulb.getState().name());
+        System.out.println("Valoarea curentului este: " + bulb.getCurrentFlow());
 
         bulb.off();
 

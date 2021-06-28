@@ -8,45 +8,62 @@ enum LightState {
 
 public class Light {
 
-    private int intenstity = 0;
+    private float intensityPercent = 0;
+
+    private int currentFlow = 0;
+
+    private int maximumVoltage = 100;
 
     private LightState state = LightState.Off;
 
-    public Light(){
+    public Light() {
 
     }
 
-    public void on(){
+    public void on() {
         state = LightState.On;
-        intenstity = 1;
+        intensityPercent = 1;
     }
 
-    public void off(){
+    public void off() {
         state = LightState.Off;
-        intenstity = 0;
+        intensityPercent = 0;
     }
 
-    public void dim(){
-        if(intenstity < 0) {
-            intenstity--;
+    public void dim() {
+        if (state != LightState.Broken && intensityPercent > 1 && state != LightState.Off) {
+            intensityPercent--;
+            currentFlow--;
         }
     }
 
     public void brighten() {
-        if (intenstity < 100) {
-            intenstity++;
-        }
-        else{
-            state = LightState.Broken;
+
+        currentFlow++;
+
+        if (state != LightState.Broken && state != LightState.Off) {
+            if (currentFlow > maximumVoltage) {
+                state = LightState.Broken;
+                intensityPercent = 0;
+            } else {
+                intensityPercent = (100f * (float) currentFlow) / (float) maximumVoltage;
+            }
         }
     }
 
-    public int getIntensity(){
-        return intenstity;
+    public float getIntensityPercent() {
+        return intensityPercent;
     }
 
-    public LightState getState(){
+    public int getCurrentFlow() {
+        return currentFlow;
+    }
+
+    public LightState getState() {
         return state;
     }
 
+    public void setMaximumVoltage(int max) {
+        maximumVoltage = Math.max(max, 0);
+    }
 }
