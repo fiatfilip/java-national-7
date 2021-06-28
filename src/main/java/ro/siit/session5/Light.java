@@ -21,19 +21,23 @@ public class Light {
     }
 
     public void on() {
-        state = LightState.On;
-        intensityPercent = 1;
+        if (state == LightState.Off) {
+            state = LightState.On;
+            intensityPercent = 1;
+        }
     }
 
     public void off() {
-        state = LightState.Off;
-        intensityPercent = 0;
+        if (state == LightState.On) {
+            state = LightState.Off;
+            intensityPercent = 0;
+        }
     }
 
     public void dim() {
-        if (state != LightState.Broken && intensityPercent > 1 && state != LightState.Off) {
-            intensityPercent--;
+        if (state != LightState.Broken && currentFlow > 1 && state != LightState.Off) {
             currentFlow--;
+            calculateIntensityPercent();
         }
     }
 
@@ -46,7 +50,7 @@ public class Light {
                 state = LightState.Broken;
                 intensityPercent = 0;
             } else {
-                intensityPercent = (100f * (float) currentFlow) / (float) maximumVoltage;
+                calculateIntensityPercent();
             }
         }
     }
@@ -65,5 +69,9 @@ public class Light {
 
     public void setMaximumVoltage(int max) {
         maximumVoltage = Math.max(max, 0);
+    }
+
+    private void calculateIntensityPercent(){
+        intensityPercent = (100f * (float) currentFlow) / (float) maximumVoltage;
     }
 }
