@@ -1,4 +1,4 @@
-package ro.siit.session21;
+package ro.siit.session21and22;
 
 
 import java.util.Arrays;

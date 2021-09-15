@@ -1,4 +1,4 @@
-package ro.siit.session19.overloadOverride;
+package ro.siit.session19and20.overloadOverride;
 
 public class A {
     public void m1(){
