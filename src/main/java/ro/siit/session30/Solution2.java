@@ -28,7 +28,8 @@ public class Solution2 {
             }
             maxDays++;
             Arrays.sort(bisquitsTypesCont, Collections.reverseOrder());
-            if(bisquitsTypesCont[k-1].equals(0)){
+
+            if(bisquitsTypesCont[i+1].equals(0)){
                 break;
             }
         }
